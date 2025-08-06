@@ -9,7 +9,7 @@ setup(
   version='0.0.2',
   author='4edbark',
   author_email='vangogprogprog@gmail.com',
-  description='Advanced IP camera streaming module with authentication and compression for OpenCV applications.',
+  description='Simple IP camera streaming module with authentication and compression for OpenCV applications.',
   long_description=readme(),
   long_description_content_type='text/markdown',
   url='https://github.com/rtcctc/c4ipcam',
