@@ -6,16 +6,17 @@ def readme():
 
 setup(
   name='c4ipcam',
-  version='0.0.2',
+  version='0.0.2.1',
   author='4edbark',
   author_email='vangogprogprog@gmail.com',
-  description='Advanced IP camera streaming module with authentication and compression for OpenCV applications.',
+  description='Simple IP camera streaming module with authentication and compression for OpenCV applications.',
   long_description=readme(),
   long_description_content_type='text/markdown',
   url='https://github.com/rtcctc/c4ipcam',
   packages=find_packages(),
   install_requires=[
     'opencv-python>=4.11.0.86',
+    'opencv-python-headless>=4.11.0.86',
     'numpy>=1.21.0'
   ],
   classifiers=[
