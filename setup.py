@@ -6,7 +6,7 @@ def readme():
 
 setup(
   name='c4ipcam',
-  version='0.0.2.1',
+  version='0.0.3',
   author='4edbark',
   author_email='vangogprogprog@gmail.com',
   description='Simple IP camera streaming module with authentication and compression for OpenCV applications.',

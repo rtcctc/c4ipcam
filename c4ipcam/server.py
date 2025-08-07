@@ -171,10 +171,8 @@ class CameraServer:
                     break
                 
                 try:
-                    # Сжимаем кадр
                     compressed_frame = self._compress_frame(frame)
                     if compressed_frame is None:
-                        # Если сжатие не удалось, отправляем как pickle
                         data = pickle.dumps(frame)
                     else:
                         data = compressed_frame
@@ -189,7 +187,6 @@ class CameraServer:
                     print(f"Клиент {address} разорвал соединение")
                     break
                 
-                # Контроль частоты кадров
                 time.sleep(self.frame_delay)
                     
         except Exception as e:
@@ -205,7 +202,6 @@ class CameraServer:
         print("Очистка ресурсов...")
         self.running = False
         
-        # Ждем завершения потоков клиентов
         for thread in self.client_threads:
             if thread.is_alive():
                 thread.join(timeout=2)
@@ -259,11 +255,11 @@ def run_server_cli():
     
     args = parser.parse_args()
     
-    print(f"Starting server at {args.host}:{args.port}")
+    print(f"Запуск сервера {args.host}:{args.port}")
     if args.password:
         print(f"Authentication enabled")
-    print(f"Resolution: {args.width}x{args.height}")
-    print(f"Quality: {args.quality}%, FPS: {args.fps}")
+    print(f"Разрешение: {args.width}x{args.height}")
+    print(f"Качество: {args.quality}%, FPS: {args.fps}")
     
     run_server(
         args.host, 
