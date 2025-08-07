@@ -16,7 +16,6 @@ setup(
   packages=find_packages(),
   install_requires=[
     'opencv-python>=4.11.0.86',
-    'opencv-python-headless>=4.11.0.86',
     'numpy>=1.21.0'
   ],
   classifiers=[

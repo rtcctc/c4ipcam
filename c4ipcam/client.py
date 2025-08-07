@@ -29,7 +29,7 @@ class CameraClient:
             password_hash = hashlib.sha256(self.password.encode()).hexdigest()
             auth_data = pickle.dumps({"password_hash": password_hash})
             
-            auth_size = struct.pack("L", len(auth_data))
+            auth_size = struct.pack("!I", len(auth_data))
             self.client_socket.sendall(auth_size + auth_data)
             
             response_size_data = b""
@@ -39,7 +39,7 @@ class CameraClient:
                     return False
                 response_size_data += packet
             
-            response_size = struct.unpack("L", response_size_data)[0]
+            response_size = struct.unpack("!I", response_size_data)[0]
             response_data = b""
             while len(response_data) < response_size:
                 packet = self.client_socket.recv(response_size - len(response_data))
@@ -93,7 +93,7 @@ class CameraClient:
     def _receive_frames(self):
         try:
             data = b""
-            payload_size = struct.calcsize("L")
+            payload_size = struct.calcsize("!I")
             
             while self.running and self.connected and self.authenticated:
                 while len(data) < payload_size:
@@ -105,7 +105,7 @@ class CameraClient:
                 
                 packed_msg_size = data[:payload_size]
                 data = data[payload_size:]
-                msg_size = struct.unpack("L", packed_msg_size)[0]
+                msg_size = struct.unpack("!I", packed_msg_size)[0]
                 
                 while len(data) < msg_size:
                     packet = self.client_socket.recv(4096)

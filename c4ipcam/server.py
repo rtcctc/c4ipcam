@@ -45,7 +45,7 @@ class CameraServer:
                     return False
                 auth_size_data += packet
             
-            auth_size = struct.unpack("L", auth_size_data)[0]
+            auth_size = struct.unpack("!I", auth_size_data)[0]
             auth_data = b""
             while len(auth_data) < auth_size:
                 packet = client_socket.recv(auth_size - len(auth_data))
@@ -60,7 +60,7 @@ class CameraServer:
             
             response = {"authenticated": authenticated}
             response_data = pickle.dumps(response)
-            response_size = struct.pack("L", len(response_data))
+            response_size = struct.pack("!I", len(response_data))
             client_socket.sendall(response_size + response_data)
             
             return authenticated
@@ -177,7 +177,7 @@ class CameraServer:
                     else:
                         data = compressed_frame
                     
-                    message_size = struct.pack("L", len(data))
+                    message_size = struct.pack("!I", len(data))
                     client_socket.sendall(message_size + data)
                     
                 except socket.error as e:
