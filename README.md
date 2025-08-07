@@ -24,7 +24,13 @@
 pip install c4ipcam
 ```
 
-Библиотека автоматически установит все необходимые зависимости, включая OpenCV.
+Библиотека автоматически установит все необходимые зависимости, включая OpenCV, но для систем без графической оболочки рекомендуется установить opencv-python-headless.
+
+```bash
+pip install c4ipcam
+pip uninstall opencv-python
+pip install opencv-python-headless
+```
 
 ## Быстрый старт
 
